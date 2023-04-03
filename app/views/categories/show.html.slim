@@ -1,0 +1,8 @@
+p= @category.title
+p= render @category.articles
+
+
+-if user_signed_in?
+  p= link_to "Create new article", new_category_article_path(@category)
+
+

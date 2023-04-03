@@ -1,0 +1,6 @@
+.categories
+  = render @categories
+
+-if user_signed_in?
+  h1 "Create new category"
+  p = link_to 'Create New Category', new_category_path

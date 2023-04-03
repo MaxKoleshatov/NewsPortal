@@ -1,0 +1,28 @@
+h1 "Welcome News Portal"
+
+- if user_signed_in?
+  h2 "Hello - #{current_user.profilename}"
+
+.category_select
+  = form_for :category, url: {action: "show"}, html: {method: "get"} do |f|
+    p
+      = f.select :category_id, options_for_select(@categories.collect { |category| [category.title, category.id] }), prompt: "Выберите пожалуйста категорию"
+    p
+      = f.submit "Go!"
+
+
+p = link_to 'All categories', categories_path
+p = link_to 'Log in', new_user_session_path
+p = link_to 'Sign out', destroy_user_session_path, method: :delete
+p = link_to 'Sigh up', new_user_registration_path
+
+
+
+
+
+
+
+
+
+
+
