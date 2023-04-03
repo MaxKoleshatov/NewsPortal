@@ -1,0 +1,11 @@
+p= @article.title
+
+-if @article.user.id ||= current_user.id
+  p= link_to "Delete article", article_path(@article), method: :delete
+
+h1"Comments"
+= render @article.comments
+
+.comment
+  h1 "Create new comment"
+  = render 'comments/form', resource: @article

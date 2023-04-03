@@ -1,0 +1,9 @@
+  = render 'shared/errors', resource: @category
+  
+  h3 Create new Category
+  = form_with model: [@category] do |form| 
+    p
+      = form.label :title 
+      = form.text_field :title
+    p     
+      = form.submit 'Create'
