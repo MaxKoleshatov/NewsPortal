@@ -10,7 +10,6 @@ h1 "Welcome News Portal"
     p
       = f.submit "Go!"
 
-
 p = link_to 'All categories', categories_path
 p = link_to 'Log in', new_user_session_path
 p = link_to 'Sign out', destroy_user_session_path, method: :delete

@@ -9,7 +9,7 @@ feature 'The user can create category' do
     given!(:category_2) {create(:category, title: "Politic")}
     # given!(:article){create(:article, category_id: category_1.id)}
 
-    scenario "Authenticated user can choise category" do
+    scenario "Authenticated user can choise category from the drop down list" do
       sign_in(user)
 
       within '.category_select' do
@@ -21,7 +21,7 @@ feature 'The user can create category' do
       expect(page).not_to have_content "Politic"
     end
 
-    scenario 'Authenticated user dont choice category, but click go ' do
+    scenario 'Authenticated user dont choice category(misstake), but click go ' do
       sign_in(user)
       click_on "Go"
     

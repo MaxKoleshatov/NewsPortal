@@ -1,14 +1,16 @@
-# # frozen_string_literal: true
+# frozen_string_literal: true
 
 require 'rails_helper'
 
-feature 'The user create comments' do
+feature 'The user comments' do
   describe 'Authenticated user' do
     given!(:user_1) { create(:user) }
+    given!(:user_2) { create(:user) }
     given!(:category_1) {create(:category)}
     given!(:article_1){create(:article, user_id: user_1.id, category_id: category_1.id)}
+    given!(:comment_1){create(:comment, user_id: user_1.id, article_id: article_1.id)}
 
-    scenario 'Authenticated user can create a comment for article ' do
+    scenario 'Authenticated user can create a comment' do
 
       sign_in(user_1)
 
@@ -27,6 +29,50 @@ feature 'The user create comments' do
     end
 
     scenario 'Authenticated user cant create a comment for misstake ' do
+      sign_in(user_1)
+
+      within '.category_select' do
+        page.select category_1.title
+        click_on "Go"
+      end
+
+      click_on article_1.title
+
+      within '.comment' do
+        click_on "Create comment"
+      end      
+      expect(page).to have_content "Comment body can't be blank"
+    end
+
+    scenario 'Authenticated user can delete his comment' do
+      sign_in(user_1)
+
+      within '.category_select' do
+        page.select category_1.title
+        click_on "Go"
+      end
+
+      click_on article_1.title
+        within '.comment' do
+          click_on "Delete comment"
+        end
+        expect(page).not_to have_content comment_1.body
+    end
+
+    scenario 'Authenticated user cant delete alien comment' do
+      sign_in(user_2)
+
+      within '.category_select' do
+        page.select category_1.title
+        click_on "Go"
+      end
+
+      click_on article_1.title
+
+      within '.comment' do
+        expect(page).not_to have_content "Delete comment"
+      end
+    end
   end
 end
 

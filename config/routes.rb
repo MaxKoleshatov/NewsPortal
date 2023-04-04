@@ -6,8 +6,6 @@ Rails.application.routes.draw do
 
   get 'welcome/show'
 
-
-
   resources :categories do
     resources :articles, shallow: true do
       resources :comments
