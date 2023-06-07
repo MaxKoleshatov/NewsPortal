@@ -32,6 +32,8 @@ gem 'devise'
 gem "net-http" #Ругался на строгую зависимость чего то с чем то. Гугл сказал ставь этот гем. Помогло
 gem "jquery-rails"
 gem 'bootstrap', '~> 5.2.3'
+gem 'activeadmin'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -60,6 +62,8 @@ group :test do
   gem 'launchy'
   gem 'shoulda-matchers'
   gem 'rails-controller-testing'
+  gem 'launchy'
+  # gem 'capybara-webkit'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

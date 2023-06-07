@@ -6,7 +6,7 @@ feature 'The user can create article' do
   describe 'Authenticated user' do
     given!(:user) { create(:user) }
     given!(:category_1) {create(:category)}
-    given!(:article){create(:article, user_id: user.id, category_id: category_1.id)}
+    given!(:article){create(:article, user_id: user.id, category_id: category_1.id, approved: true)}
 
     scenario 'Authenticated user can create a article and see all articles ' do
 
@@ -19,12 +19,15 @@ feature 'The user can create article' do
 
       click_on "Create new article"
             
-      fill_in 'Title', with: 'Some ArticleTitle'
+      fill_in 'Title', with: 'LastArticle'
       fill_in 'Announcement', with: 'Some ArticleAnnouncement'
       fill_in 'Body', with: 'Some ArticleBody'
       click_on 'Create'
-      
-      expect(page).to have_content 'Some ArticleTitle'
+
+      # expect{Article.count}.to change(Article, :count).by(1)
+      # expect(Article.last).to eq Article.last 
+      # .where(title: 'LastArticle')      
+      expect(page).to have_content 'Вы создали статью, она появится тут когда пройдет модерацию'
       expect(page).to have_content article.title
     end
 
@@ -46,7 +49,7 @@ feature 'The user can create article' do
   describe 'Unregistered user' do
     given!(:user) { create(:user) }
     given!(:category_1) {create(:category)}
-    given!(:article){create(:article, user_id: user.id, category_id: category_1.id)}
+    given!(:article){create(:article, user_id: user.id, category_id: category_1.id, approved: true)}
 
     scenario "Unregistered user cant create a new article, but he see all articles" do
 

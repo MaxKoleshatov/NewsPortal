@@ -6,8 +6,8 @@ feature 'The user can delete article' do
   describe 'Authenticated user' do
     given(:user) { create(:user) }
     given!(:category_1) {create(:category)}
-    given!(:article){create(:article, user: user, category_id: category_1.id)}
-    given!(:article2){create(:article, user: user, category_id: category_1.id, title: "555")}
+    given!(:article){create(:article, user: user, category_id: category_1.id, approved: true)}
+    given!(:article2){create(:article, user: user, category_id: category_1.id, title: "555", approved: true)}
 
 
     scenario "Authenticated user can delete self article" do

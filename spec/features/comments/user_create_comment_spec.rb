@@ -7,7 +7,7 @@ feature 'The user comments' do
     given!(:user_1) { create(:user) }
     given!(:user_2) { create(:user) }
     given!(:category_1) {create(:category)}
-    given!(:article_1){create(:article, user_id: user_1.id, category_id: category_1.id)}
+    given!(:article_1){create(:article, user_id: user_1.id, category_id: category_1.id, approved: true)}
     given!(:comment_1){create(:comment, user_id: user_1.id, article_id: article_1.id)}
 
     scenario 'Authenticated user can create a comment' do

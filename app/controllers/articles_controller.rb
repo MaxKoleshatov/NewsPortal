@@ -21,7 +21,7 @@ class ArticlesController < ApplicationController
       @article.user = current_user
 
       if @article.save
-        redirect_to category_path(@category)
+        redirect_to category_path(@category), notice: "Вы создали статью, она появится тут когда пройдет модерацию"
       else
         render :new
       end
